@@ -22,30 +22,31 @@ app.get('/api', (req, res) => {
 app.get('/api/v1/pets', (req, res) => {
     // send the pets array as a response
     res.send(pets);
-
+    // http://localhost:8080/api/v1/pets
 });
 
 // get pet by owner with query string
-app.get('/api/v1/pets/:owner', (req, res) => {
+app.get('/api/v1/pets/owner', (req, res) => {
     // get the owner from the request
-
-
+    const {owner} = req.query; 
     // find the pet in the pets array
     const pet = pets.find(pet => pet.owner === owner);
-
+    console.log("owner: " + req.query.owner);
     // send the pet as a response
+    res.send(pet);
+    // http://localhost:8080/api/v1/pets/owner?owner=John
 });
 
 // get pet by name
 app.get('/api/v1/pets/:name', (req, res) => {
     // get the name from the request
-
-
+    const {name} = req.query;
     // find the pet in the pets array
     const pet = pets.find(pet => pet.name === name);
-
+    console.log("name: " + req.query.name);
     // send the pet as a response
-
+    res.send(pet)
+    // http://localhost:8080/api/v1/pets/name?name=Spot
 });
 
 app.listen(PORT, () => {
