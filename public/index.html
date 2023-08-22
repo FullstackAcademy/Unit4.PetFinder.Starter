@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Pet Finder</h1>
-    
-    <script src="script.js"></script>
-</body>
+    <ul></ul>
+
+    <script>
+      const ul = document.querySelector("ul");
+      fetch("http://localhost:8080/api/v1/pets")
+        .then((response) => response.json())
+        .then((pets) => {
+          pets.forEach((pet) => {
+            console.log("hello world");
+            const li = document.createElement("li");
+            li.textContent = pet.name;
+            ul.appendChild(li);
+          });
+        });
+    </script>
+  </body>
 </html>

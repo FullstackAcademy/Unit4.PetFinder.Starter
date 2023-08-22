@@ -46,8 +46,11 @@ app.get('/api/v1/pets/:name', (req, res) => {
     console.log("name: " + req.query.name);
     // send the pet as a response
     res.send(pet)
+    // res.send("name: " + req.query.name);
     // http://localhost:8080/api/v1/pets/name?name=Spot
 });
+
+
 
 app.listen(PORT, () => {
     console.log('Server is listening on port ' + PORT);
