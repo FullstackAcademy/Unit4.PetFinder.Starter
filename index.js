@@ -11,7 +11,7 @@ const PORT = 8080;
 
 // GET - / - returns homepage
 app.get('/', (req, res) => {
-    // serve up the public folder as static index.html file
+// serve up the public folder as static index.html file
 //use path module to construct the absolute path to the html file
     const filePath = path.join(__dirname, 'public', 'index.html');
 //send the HTML file as a response    
@@ -26,9 +26,14 @@ app.get('/api', (req, res) => {
 
 // get all pets from the database
 app.get('/api/v1/pets', (req, res) => {
+Pet.find({}, (err, allPets) => {
+    if (err) {
+        res.status().json({error: 'Error fetching pets from the database'});
+    } else {
     // send the pets array as a response
     res.json(allPets);
-
+    }
+});
 });
 
 // get pet by owner with query string
