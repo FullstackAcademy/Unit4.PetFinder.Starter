@@ -1,21 +1,15 @@
 // import the pets array from data.js
 const pets = require('./data');
-console.log(pets);
 
 // init express app
 const express = require('express');
 const app = express();
-const path = require('path');
 
 const PORT = 8080;
 
 // GET - / - returns homepage
 app.get('/', (req, res) => {
-// serve up the public folder as static index.html file
-//use path module to construct the absolute path to the html file
-    const filePath = path.join(__dirname, 'public', 'index.html');
-//send the HTML file as a response    
-    res.sendFile(filePath);
+    // serve up the public folder as static index.html file
 
 });
 
@@ -26,28 +20,13 @@ app.get('/api', (req, res) => {
 
 // get all pets from the database
 app.get('/api/v1/pets', (req, res) => {
-Pet.find({}, (err, allPets) => {
-    if (err) {
-        res.status().json({error: 'Error fetching pets from the database'});
-    } else {
     // send the pets array as a response
-    res.json(allPets);
-    }
-});
+
 });
 
 // get pet by owner with query string
 app.get('/api/v1/pets/owner', (req, res) => {
     // get the owner from the request
-    const ownerName = req.query.ownerName;
-    Pet.find({ owner: ownerName }, (err, petsByOwner) => {
-       if (err) {
-        res.status().json({error: 'Error fetching pets by owner from the database'});
-       } else {
-        res.json(petByOwner);
-       }
-    });
-});
 
 
     // find the pet in the pets array
@@ -60,19 +39,14 @@ app.get('/api/v1/pets/owner', (req, res) => {
 // get pet by name
 app.get('/api/v1/pets/:name', (req, res) => {
     // get the name from the request
-    const petName = req.params.name;
-    Pet.findOne({ name: petName}, (err, petByName) => {
-        if (err) {
-            res.status().json({error: 'Error fetching pet from the database'});
-        } else if (petByName) {
-            res.json(petByName);
-        } else {
-            res.status().json({error: 'Pet not found'});
-        }
-    });
-});
+
+
+    // find the pet in the pets array
+    const pet = pets.find(pet => pet.name === name);
 
     // send the pet as a response
+
+});
 
 app.listen(PORT, () => {
     console.log('Server is listening on port ' + PORT);
