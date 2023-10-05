@@ -54,16 +54,16 @@ app.get('/api/v1/pets/owner', (req, res) => {
 app.get('/api/v1/pets/:name', (req, res) => {
     // get the name from the request
     const petName = req.params.name;
-
-    // find the pet in the pets array
-    const petByName = pets.find(pet => pet.name === petName);
-    if (petsByName) {
-        res.json(petsByName);
+    Pet.findOne({ name: petName}, (err, petByName) => {
+        if (err) {
+            res.status().json({error: 'Error fetching pet from the database'});
+        } else if (petByName) {
+            res.json(petByName);
         } else {
-            res.status(404).json({error: 'Pet not found.'});
+            res.status().json({error: 'Pet not found'});
         }
-        });
-    
+    });
+});
 
     // send the pet as a response
 
