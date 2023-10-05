@@ -40,7 +40,14 @@ Pet.find({}, (err, allPets) => {
 app.get('/api/v1/pets/owner', (req, res) => {
     // get the owner from the request
     const ownerName = req.query.ownerName;
-    res.json(petsByOwner);
+    Pet.find({ owner: ownerName }, (err, petsByOwner) => {
+       if (err) {
+        res.status().json({error: 'Error fetching pets by owner from the database'});
+       } else {
+        res.json(petByOwner);
+       }
+    });
+});
 
 
     // find the pet in the pets array
