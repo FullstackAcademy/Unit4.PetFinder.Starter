@@ -14,7 +14,7 @@ The GET route for all pets is currently "under construction". Navigate to `index
 
 ### Problem 2: GET pets by name
 
-The GET route for pets by name is currently "under construction". Navigate to `index.js` and find the GET method at `/api/v1/pets/:name` and write the code to get a pet by name from the database.
+The GET route for pets by name is currently "under construTction". Navigate to `index.js` and find the GET method at `/api/v1/pets/:name` and write the code to get a pet by name from the database.
 
 ### Problem 3: GET pet by owner's name with a query string
 
